@@ -3,7 +3,7 @@ const { fetchAllOrders, updateProductById, updateOrderById } = require('../contr
 const { createProduct } = require('../controller/Product')
 const router = express.Router()
 
-router.get('/all-orders', fetchAllOrders)
+router.get('/orders', fetchAllOrders)
     .patch('/orders/:id', updateOrderById)
     .patch('/product-form/edit-product/:id', updateProductById)
     .post('/product-form/add-product',createProduct)
