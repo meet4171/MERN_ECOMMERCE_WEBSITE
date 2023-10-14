@@ -19,6 +19,10 @@
             "dest": "build/index.html"
         },
         {
+            "src": "/admin(/.*)?", 
+            "dest": "build/index.html"
+         },
+        {
             "src": "/(.+)",
             "dest": "build/$1"
         }

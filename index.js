@@ -133,8 +133,8 @@ server.post("/create-checkout-session", async (req, res) => {
     const session = await stripe.checkout.sessions.create({
         line_items: line_items,
         mode: 'payment',
-        success_url: `http://localhost:3000/order-success/${orderDetails.id}`,
-        cancel_url: `http://localhost:3000/order-cancalled/`,
+        success_url: `/order-success/${orderDetails.id}`,
+        cancel_url: `/order-cancalled/`,
     });
 
     res.status(200).json({ url: session.url })
@@ -153,8 +153,6 @@ server.use('/api/cart', isAuth(), cartRouter);
 server.use('/api/orders', isAuth(), orderRouter);
 server.use('/api/admin', isAuth(), adminRouter);
 server.use(express.static(path.join(__dirname, 'build')));
-
-
 
 server.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));

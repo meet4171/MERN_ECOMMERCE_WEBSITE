@@ -36,7 +36,7 @@ let transporter = nodemailer.createTransport({
 exports.sendMail = (sendTo, token) => {
 
     // html file to send in response
-    const resetLink = "http://localhost:3000/reset-password?email=" + sendTo + "&token=" + token;
+    const resetLink = "/reset-password?email=" + sendTo + "&token=" + token;
 
     return new Promise((resolve, reject) => {
         ejs.renderFile(__dirname + "/resetPass.ejs", { email: sendTo, resetLink: resetLink }, function (err, data) {
