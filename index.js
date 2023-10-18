@@ -145,6 +145,7 @@ server.post("/create-checkout-session", async (req, res) => {
 // Routes [API EndPoints]
 server.use(express.static(path.join(__dirname, 'build')));
 server.use('/api/auth', authRouter);
+server.use('product-detial/api/product', isAuth(), productRouter);
 server.use('/api/product', isAuth(), productRouter);
 server.use('/api/brands', isAuth(), brandsRouter);
 server.use('/api/categories', isAuth(), categoryRouter);
