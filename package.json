@@ -28,6 +28,7 @@
     "stripe": "^13.7.0"
   },
   "devDependencies": {
-    "crypto": "^1.0.1"
+    "crypto": "^1.0.1",
+    "vercel": "^32.4.1"
   }
 }
