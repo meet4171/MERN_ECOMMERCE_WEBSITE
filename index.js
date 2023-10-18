@@ -161,6 +161,6 @@ server.get('/*', function (req, res) {
 
 main()
 
-// server.listen(8080, () => {
-//     console.log('server started at port http://localhost:8080');
-// });
+server.listen(8080, () => {
+    console.log('server started at port http://localhost:8080');
+});
