@@ -9,7 +9,7 @@
         "use": "@vercel/static"
       }
     ],
-    "routes":[{ "src": "/product-detail/api/product", "dest": "/api/product" }
+    "routes":[{ "src": "/product-detail/", "dest": "/api/" }
     ],
   
     "rewrites": [{ "source": "/(.*)", "destination": "index.js" }],
