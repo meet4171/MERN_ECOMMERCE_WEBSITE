@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.6e4fa05e.css",
-    "main.js": "/static/js/main.8e1b33b4.js",
-    "static/media/img2.png": "/static/media/img2.f97e5949160768417333.png",
-    "static/media/img3.png": "/static/media/img3.0e6036a8fcbf3d392278.png",
-    "static/media/img4.png": "/static/media/img4.73b38514e28e8fba2b95.png",
-    "static/media/img1.png": "/static/media/img1.2a9c7785f95f8be302bc.png",
-    "static/media/img5.png": "/static/media/img5.d3c625faad0a4fbc3d98.png",
-    "static/media/img6.png": "/static/media/img6.5964936d1269428e14fe.png",
-    "static/media/noProduct.png": "/static/media/noProduct.86d3fa731dd6c2b8e037.png",
+    "main.js": "/static/js/main.f466b0de.js",
+    "static/media/img3.jpg": "/static/media/img3.de034a6d4a2d1898da26.jpg",
+    "static/media/img6.jpg": "/static/media/img6.a31d909709f31d0efac4.jpg",
+    "static/media/img2.jpg": "/static/media/img2.54c64d5e37270e7df5ce.jpg",
+    "static/media/img5.jpg": "/static/media/img5.824987856b1d9abdd943.jpg",
+    "static/media/img4.jpg": "/static/media/img4.300a4b9233b3581c2287.jpg",
+    "static/media/img1.jpg": "/static/media/img1.4af8cc8151b37bfec270.jpg",
     "static/media/huawei.svg": "/static/media/huawei.3c31d907ddcacf274562cf64e67a7a54.svg",
-    "static/media/backgroundCartIcon.png": "/static/media/backgroundCartIcon.2e0b8330a0f4368e32e5.png",
+    "static/media/noProduct.jpg": "/static/media/noProduct.eb86101cb96d6b2d05a0.jpg",
+    "static/media/backgroundCartIcon.jpg": "/static/media/backgroundCartIcon.2b4d54cb0165a128a0d2.jpg",
     "static/media/nestle-4.svg": "/static/media/nestle-4.5aea9062ce9614a90db6e55aaf338cf8.svg",
     "static/media/brainware-europe-947.svg": "/static/media/brainware-europe-947.e17192cffb0c2fc9136d8ae75ae72ac0.svg",
     "static/media/sellfy.svg": "/static/media/sellfy.ff74e8c5d392ef556fec3f3bc32a3e26.svg",
@@ -42,10 +42,10 @@
     "static/media/apple.svg": "/static/media/apple.3ec5e08c6bf51c50dc73fff562366d1d.svg",
     "static/media/oneplus.svg": "/static/media/oneplus.912f184707be789b00c65c7a00fe7bf7.svg",
     "main.6e4fa05e.css.map": "/static/css/main.6e4fa05e.css.map",
-    "main.8e1b33b4.js.map": "/static/js/main.8e1b33b4.js.map"
+    "main.f466b0de.js.map": "/static/js/main.f466b0de.js.map"
   },
   "entrypoints": [
     "static/css/main.6e4fa05e.css",
-    "static/js/main.8e1b33b4.js"
+    "static/js/main.f466b0de.js"
   ]
 }

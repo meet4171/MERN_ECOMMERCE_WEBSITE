@@ -9,6 +9,19 @@
         "use": "@vercel/static"
       }
     ],
+    "routes":[{ "src": "/product-detail/api/product", "dest": "/api/product" }
+    ],
   
-    "rewrites": [{ "source": "/(.*)", "destination": "index.js" }]
+    "rewrites": [{ "source": "/(.*)", "destination": "index.js" }],
+    "headers": [
+      {
+        "source": "/(.*)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600"  
+          }
+        ]
+      }
+    ]
   }
