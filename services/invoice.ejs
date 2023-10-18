@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #e2e1e0;
+            font-family: Open Sans, sans-serif;
+            font-size: 100%;
+            font-weight: 400;
+            line-height: 1.4;
+            color: #000;
+            text-align: center;
+            /* Center-align the entire content */
+        }
+
+        .container {
+            max-width: 670px;
+            margin: 50px auto 10px;
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+            border-top: solid 10px green;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        .header img {
+            max-width: 150px;
+        }
+
+        .order-details {
+            text-align: left;
+            margin-top: 35px;
+        }
+
+        .order-details p {
+            font-size: 14px;
+            margin: 0 0 6px 0;
+        }
+
+        .customer-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 35px;
+        }
+
+        .customer-info div {
+            width: 48%;
+            text-align: left;
+        }
+
+        .items {
+            padding: 30px 0;
+            text-align: left;
+            margin: ;
+        }
+
+        .item {
+            font-size: 14px;
+            margin: 10px 0;
+            padding: 10px;
+            border: solid 1px #ddd;
+            font-weight: bold;
+        }
+
+        .footer {
+            font-size: 14px;
+            padding: 50px 15px 0 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div
+                style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;text-decoration: underline;text-underline-offset: 8px;">
+                TrendCart.com
+            </div>
+            <h1 style="font-size: 30px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Thank
+                You For Shopping With Us</h1>
+            <p><%= currentDate %></p>
+        </div>
+        <div class="order-details">
+            <p><span>Order status : </span><b style="color: green;">Placed Successfully</b></p>
+            <p><span>Order Id  : </span><%= orderInfo.id %></p>
+            <p><span>Order Total Amount  : </span>Rs. <%= orderInfo.subTotalWithDiscount%></p>
+            <p><span>Order Total QTY  : </span><%= orderInfo.totalQunatity%></p>
+            <p><span>Payment Method  : </span><%= orderInfo.selectedPaymentMethod%></p>
+        </div>
+        <div class="customer-info">
+            <div>
+                <p><span>Name  : </span><%= userInfo.username %></p>
+                <p><span>Email  : </span><%= userInfo.email %></p>
+                <p><span>Phone  : </span><%= orderInfo.selectedAddress.phone %></p>
+            </div>
+            <div>
+                <p><span>Address</span><%= orderInfo.selectedAddress.address %></p><br/>
+                <p><%= orderInfo.selectedAddress.appartment %></p>
+                <p><%= orderInfo.selectedAddress.city %> , <%= orderInfo.selectedAddress.state %> , <%= orderInfo.selectedAddress.country %>   </p>
+                 <p>Zip : <%= orderInfo.selectedAddress.zip %></p>
+                
+            </div>
+        </div>
+        <div class="items">
+            <h2>Items</h2>
+            <% orderInfo.cartItems.forEach(function(item){%>
+            <div class="item">
+                <img src="<%= item.product.thumbnail %>" alt="Product Image" width="50">
+                <div style="display: flex;justify-content: space-between;">
+                    <div>
+                        <h1 style="font-size: 20px;"><%= item.product.title %></h1>
+                        <h4>QTY : <%= item.quantity %></h4>
+                    </div>
+                    <div>
+
+                        <h4>Price : Rs <%=item.product.price %></h4>
+                        <h4>Discount : <%= item.product.discountPercentage%>%</h4>
+                        <h4></h4>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <% }) %>
+        </div>
+        <div class="footer">
+            <strong>Regards</strong> www.trendcart.com<br>
+            Sanand, Pin/Zip - 382210, Ahmedabad, Gujarat, India<br><br>
+            <b>Phone:</b> 03552-222011<br>
+            <b>Email:</b> trendcartofficial@gmail.com
+        </div>
+    </div>
+</body>
+
+</html>
