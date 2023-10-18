@@ -1,25 +1,29 @@
 {
-    "builds": [
-      {
-        "src": "index.js",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "build/**",
-        "use": "@vercel/static"
-      }
-    ],
-  
-    "rewrites": [{ "source": "/(.*)", "destination": "index.js" }],
-    "headers": [
-      {
-        "source": "/(.*)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "public, max-age=3600"  
-          }
-        ]
-      }
-    ]
-  }
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "build/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "build": {
+    "functions": {
+      "maxDuration": 30 
+    }
+  },
+  "rewrites": [{ "source": "/(.*)", "destination": "index.js" }],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"  
+        }
+      ]
+    }
+  ]
+}
