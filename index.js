@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport');
-// const cors = require('cors');
+const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser') // go get cookies in req.cookies
 const { User } = require('./model/User');
@@ -45,13 +45,13 @@ server.use(
 server.use(passport.initialize());
 server.use(passport.session());
 
-// server.use(cors(
-//     {
-//         origin: ['http://localhost:3000', 'https://checkout.stripe.com'],
-//         exposedHeaders: ['X-Total-Count'],
-//         credentials: true, // Allow cookies with credentials
-//     }
-// ));
+server.use(cors(
+    {
+        origin: ['http://localhost:3000', 'https://checkout.stripe.com'],
+        exposedHeaders: ['X-Total-Count'],
+        credentials: true, // Allow cookies with credentials
+    }
+));
 
 // Passport Local Strategy
 
