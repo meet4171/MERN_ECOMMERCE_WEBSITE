@@ -114,7 +114,7 @@ passport.deserializeUser(function (user, cb) {
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 
-server.post("/create-checkout-session", async (req, res) => {
+server.post("/api/create-checkout-session", async (req, res) => {
     const orderDetails = req.body;
 
 
