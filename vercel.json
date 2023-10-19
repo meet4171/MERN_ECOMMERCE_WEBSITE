@@ -9,7 +9,12 @@
       "use": "@vercel/static"
     }
   ],
-  "routes":[{"source":"/create-checkout-session","destination":"index.js"}],
+  "routes": [
+    {
+      "src": "/create-checkout-session",
+      "dest": "index.js"
+    }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "index.js" }],
   "headers": [
     {
