@@ -142,9 +142,8 @@ server.post("/create-checkout-session", async (req, res) => {
 
 
 // Routes [API EndPoints]
-server.use(express.static(path.join(__dirname, 'build')));
+server.use(express.static(path.resolve(__dirname, 'build')));
 server.use('/api/auth', authRouter);
-server.use('/product-detial/api/product', isAuth(), productRouter);
 server.use('/api/product', isAuth(), productRouter);
 server.use('/api/brands', isAuth(), brandsRouter);
 server.use('/api/categories', isAuth(), categoryRouter);
@@ -153,7 +152,7 @@ server.use('/api/cart', isAuth(), cartRouter);
 server.use('/api/orders', isAuth(), orderRouter);
 server.use('/api/admin', isAuth(), adminRouter);
 server.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
 
 
