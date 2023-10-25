@@ -112,8 +112,6 @@ passport.deserializeUser(function (user, cb) {
 // Stripe Payment
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
-
 server.post("/create-checkout-session", async (req, res) => {
     const orderDetails = req.body;
 
@@ -139,8 +137,6 @@ server.post("/create-checkout-session", async (req, res) => {
     res.status(200).json({ url: session.url })
 })
 
-
-
 // Routes [API EndPoints]
 server.use(express.static(path.resolve(__dirname, 'build')));
 server.use('/api/auth', authRouter);
@@ -154,11 +150,7 @@ server.use('/api/admin', isAuth(), adminRouter);
 server.get('/*', function (req, res) {
     res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
-
-
-
 main()
-
 server.listen(8080, () => {
     console.log('server started at port http://localhost:8080');
 });

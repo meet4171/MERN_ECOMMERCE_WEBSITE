@@ -15,6 +15,7 @@ exports.sanitizeUser = (user) => {
 exports.cookieExtractor = (req) => {
 
     let token = null;
+    
     if (req && req.cookies && req.cookies['jwt']) {
         token = req.cookies['jwt'];
     }
