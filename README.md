@@ -5,6 +5,7 @@
 
 **🔥  Features**
 --
+
 - **Login | Signup | Reset Password** 
     - Sign up to create new account.
     - Login if already a user.
@@ -82,3 +83,70 @@ React | Redux | Redux toolkit | TailwindCSS | TailwindComponents | Stripe | Reac
 
 **Server :**  
 Node JS | Express JS | Mongodb | Mongoose | Cors | jsonwebtoken | Passport JS | EJS | Nodemailer | Bcrypt | Vercel 
+
+**📥 Installation**
+--
+
+⚠️ Here MERN_ECOMMERCE_WEBSITE is the backend code and build folder inside it is Fronted build , our Fronted is statically hosted by our express server. MERN_ECOMMERCE_WEBSITE_FRONTEND is frontend code repo.  
+
+
+Clone Project with 
+
+```bash
+git clone https://github.com/meet4171/MERN_ECOMMERCE_WEBSITE.git
+  ```
+
+Go to the project directory
+
+```bash
+  cd MERN_ECOMMERCE_WEBSITE
+```  
+
+Install dependencies
+
+```bash
+  npm install
+```
+⚠️ Before running the project change the `.env-dummy` file to `.env` and replace all the dummy value with your own value accordingly.  
+
+Start the server
+
+```bash
+  npm run start
+```
+✨ Frontend Code
+-- 
+ - If you want to make any changes in frontend than 
+
+ Clone Fronted code with 
+
+```bash
+git clone https://github.com/meet4171/MERN_ECOMMERCE_WEBSITE_FRONTEND.git
+  ```
+
+Go to the project directory
+
+```bash
+  cd MERN_ECOMMERCE_WEBSITE_FRONTEND
+```  
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+- After installation make changes as per you need and run the command
+
+```bash
+  npm run build
+```
+
+- Replace the build folder in the MERN_ECOMMERCE_WEBSITE ( backend ) with the newly created build folder in frontend.
+
+- 😊 You are good to go..
+
+![image](https://github.com/meet4171/README/blob/main/assets/gifs/marquee.svg)
+
+
+
