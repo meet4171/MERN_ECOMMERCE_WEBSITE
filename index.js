@@ -130,8 +130,8 @@ server.post("/create-checkout-session", async (req, res) => {
     const session = await stripe.checkout.sessions.create({
         line_items: line_items,
         mode: 'payment',
-        success_url: `/order-success/${orderDetails.id}`,
-        cancel_url: `/order-cancalled/`,
+        success_url: `https://mern-ecommerce-website-h1f90r0ht-meet-jadavs-projects.vercel.app/order-success/${orderDetails.id}`,
+        cancel_url: `https://mern-ecommerce-website-h1f90r0ht-meet-jadavs-projects.vercel.app/order-cancalled/`,
     });
 
     res.status(200).json({ url: session.url })
