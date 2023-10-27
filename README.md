@@ -2,7 +2,7 @@
 # MERN ECOMMERCE WEBSITE
    ✨TrendCart is an ecommerce website which has some of the feature of real time ecommerce website like amazon or flipkart.✨  
    
-🔗 [Click to See Live Demo of Website](https://mern-ecommerce-website-bki8ri79f-meet-jadavs-projects.vercel.app/login)  
+🔗 [Click to See Live Demo of Website](https://mern-ecommerce-website-kq9d52a6w-meet-jadavs-projects.vercel.app/)  
 
 **🔥  Features**
 --
