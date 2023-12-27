@@ -130,8 +130,8 @@ server.post("/create-checkout-session", async (req, res) => {
     const session = await stripe.checkout.sessions.create({
         line_items: line_items,
         mode: 'payment',
-        success_url: `meetjadav.shop/order-success/${orderDetails.id}`,
-        cancel_url: `meetjadav.shop/order-cancalled/`,
+        success_url: `https://meetjadav.shop/order-success/${orderDetails.id}`,
+        cancel_url: `https://meetjadav.shop/order-cancalled/`,
     });
 
     res.status(200).json({ url: session.url })
