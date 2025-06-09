@@ -1,19 +1,20 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport');
 const cors = require('cors');
 const session = require('express-session');
-const cookieParser = require('cookie-parser') // go get cookies in req.cookies
+const cookieParser = require('cookie-parser');
 const { User } = require('./model/User');
 const bcrypt = require('bcrypt');
-const { isAuth, sanitizeUser, cookieExtractor, isTokenValid } = require('./services/comman');
+const { isAuth, sanitizeUser, cookieExtractor } = require('./services/comman');
 const JwtStrategy = require('passport-jwt').Strategy;
 const jwt = require('jsonwebtoken');
-const { urlencoded } = require('body-parser')
-const path = require('path')
+const { urlencoded } = require('body-parser');
+const path = require('path');
 const server = express();
-const { main } = require('./services/mongoose_connection')
+const { main } = require('./services/mongoose_connection');
+const { APP_MODE, BASE_URL } = require('./config');
 
 // Import routes
 const { router: productRouter } = require('./routes/Product');
@@ -24,50 +25,45 @@ const { router: authRouter } = require('./routes/Auth');
 const { router: cartRouter } = require('./routes/Cart');
 const { router: orderRouter } = require('./routes/Order');
 const { router: adminRouter } = require('./routes/Admin');
-const { nextTick } = require('process');
-const { APP_MODE, BASE_URL } = require('./config');
 
+// 1️⃣ CORS FIRST (important)
+server.use(cors({
+    origin: [
+        'http://localhost:3000',
+        'https://meetjadav.shop',
+        'https://www.meetjadav.shop',
+        'https://checkout.stripe.com'
+    ],
+    exposedHeaders: ['X-Total-Count'],
+    credentials: true
+}));
 
-
-// All Middlewares
-server.use(urlencoded({ extended: true }))
-server.use(cookieParser())
+// 2️⃣ Basic Middlewares
+server.use(urlencoded({ extended: true }));
+server.use(cookieParser());
 server.use(express.json());
 
-
-server.use(
-    session({
-        secret: 'secret',
-        resave: false,
-        saveUninitialized: false,
-    })
-);
+// 3️⃣ Session and Passport
+server.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+}));
 server.use(passport.initialize());
 server.use(passport.session());
 
-server.use(cors(
-    {
-        origin: ['http://localhost:3000', 'https://meetjadav.shop', 'https://www.meetjadav.shop', 'https://checkout.stripe.com'],
-        exposedHeaders: ['X-Total-Count'],
-        credentials: true, // Allow cookies with credentials
-    }
-));
-
-// Passport Local Strategy
-
+// 4️⃣ Passport Local Strategy
 passport.use('local', new LocalStrategy({
     usernameField: 'email',
-    passwordField: 'password',
+    passwordField: 'password'
 }, async function (email, password, done) {
     try {
-        const user = await User.findOne({ email }).exec()
-        if (!user) {
+        const user = await User.findOne({ email }).exec();
+        if (!user) return done(null, false);
 
-            return done(null, false);
-        }
-        if (! await bcrypt.compare(password, user.password)) {
-            return done(null, false);
-        }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return done(null, false);
+
         const token = jwt.sign(sanitizeUser(user), process.env.JWT_SECRET_KEY);
         return done(null, { id: user.id, role: user.role, token });
     } catch (err) {
@@ -75,70 +71,66 @@ passport.use('local', new LocalStrategy({
     }
 }));
 
-// Passport JWT Strategy 
+// 5️⃣ Passport JWT Strategy
+passport.use('jwt', new JwtStrategy({
+    jwtFromRequest: cookieExtractor,
+    secretOrKey: process.env.JWT_SECRET_KEY
+}, async function (jwt_payload, done) {
+    try {
+        const user = await User.findById(jwt_payload.id);
+        if (user) return done(null, sanitizeUser(user));
+        else return done(null, false);
+    } catch (err) {
+        return done(err, false);
+    }
+}));
 
-passport.use(
-    'jwt',
-    new JwtStrategy({
-        jwtFromRequest: cookieExtractor,
-        secretOrKey: process.env.JWT_SECRET_KEY
-    }, async function (jwt_payload, done) {
-        try {
-            const user = await User.findById(jwt_payload.id);
-            if (user) {
-                return done(null, sanitizeUser(user)); // This will send the user to req.user
-            } else {
-                return done(null, false);
-            }
-        } catch (err) {
-            return done(err, false);
-        }
-    })
-);
+// 6️⃣ Passport serialize/deserialize
 passport.serializeUser(function (user, cb) {
-    process.nextTick(function () {
-        return cb(null, { id: user.id, role: user.role });
+    process.nextTick(() => {
+        cb(null, { id: user.id, role: user.role });
     });
 });
-
-// Deserialize User will be never called
 passport.deserializeUser(function (user, cb) {
-    process.nextTick(function () {
-        return cb(null, user);
+    process.nextTick(() => {
+        cb(null, user);
     });
 });
 
-
-// Stripe Payment
-
+// 7️⃣ Stripe Payment (before /api routes)
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 server.post("/create-checkout-session", async (req, res) => {
-    const orderDetails = req.body;
+    try {
+        const orderDetails = req.body;
 
-
-    const line_items = orderDetails.cartItems.map((item) => ({
-        price_data: {
-            currency: "inr",
-            product_data: {
-                name: item.product.title,
+        const line_items = orderDetails.cartItems.map(item => ({
+            price_data: {
+                currency: "inr",
+                product_data: {
+                    name: item.product.title
+                },
+                unit_amount: Math.round(
+                    (item.product.price - (item.product.price * (item.product.discountPercentage / 100))) * 100
+                )
             },
-            unit_amount: Math.round((item.product.price - (item.product.price * (item.product.discountPercentage / 100))) * 100)
-        },
-        quantity: item.quantity
-    }));
+            quantity: item.quantity
+        }));
 
-    const session = await stripe.checkout.sessions.create({
-        line_items: line_items,
-        mode: 'payment',
-        success_url: `${BASE_URL}/order-success/${orderDetails.id}`,
-        cancel_url: `${BASE_URL}/order-cancalled/`,
-    });
+        const session = await stripe.checkout.sessions.create({
+            line_items,
+            mode: 'payment',
+            success_url: `${BASE_URL}/order-success/${orderDetails.id}`,
+            cancel_url: `${BASE_URL}/order-cancalled/`
+        });
 
-    res.status(200).json({ url: session.url })
-})
+        res.status(200).json({ url: session.url });
+    } catch (error) {
+        console.error('Stripe session error:', error);
+        res.status(500).json({ error: 'Stripe session failed' });
+    }
+});
 
-
-
+// 8️⃣ API routes
 server.use('/api/auth', authRouter);
 server.use('/api/product', isAuth(), productRouter);
 server.use('/api/brands', isAuth(), brandsRouter);
@@ -148,16 +140,17 @@ server.use('/api/cart', isAuth(), cartRouter);
 server.use('/api/orders', isAuth(), orderRouter);
 server.use('/api/admin', isAuth(), adminRouter);
 
-
-// Routes [API EndPoints]
+// 9️⃣ Static serving for React app (safe version)
 if (APP_MODE === "production") {
     server.use(express.static(path.resolve(__dirname, 'build')));
-    server.get(/^\/(?!api).*/, function (req, res) {
+    // Only match non-API routes (very important!)
+    server.get(/^\/(?!api).*/, (req, res) => {
         res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
     });
 }
 
-main()
+// 10️⃣ Start server
+main();
 server.listen(8080, () => {
-    console.log('server started at port http://localhost:8080');
+    console.log('✅ Server started at port http://localhost:8080');
 });
