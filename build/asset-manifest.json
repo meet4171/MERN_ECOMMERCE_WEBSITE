@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.fe96f94a.css",
-    "main.js": "/static/js/main.fd6236b3.js",
+    "main.js": "/static/js/main.38892a9d.js",
     "static/media/img3.jpg": "/static/media/img3.de034a6d4a2d1898da26.jpg",
     "static/media/img6.jpg": "/static/media/img6.a31d909709f31d0efac4.jpg",
     "static/media/img2.jpg": "/static/media/img2.54c64d5e37270e7df5ce.jpg",
@@ -27,10 +27,10 @@
     "static/media/zara-logo-1.svg": "/static/media/zara-logo-1.00bc511aa9399ac258f43c0293a26ec4.svg",
     "static/media/amd-logo-1.svg": "/static/media/amd-logo-1.fbd703721512e58859b4ed3a9deb1c8c.svg",
     "main.fe96f94a.css.map": "/static/css/main.fe96f94a.css.map",
-    "main.fd6236b3.js.map": "/static/js/main.fd6236b3.js.map"
+    "main.38892a9d.js.map": "/static/js/main.38892a9d.js.map"
   },
   "entrypoints": [
     "static/css/main.fe96f94a.css",
-    "static/js/main.fd6236b3.js"
+    "static/js/main.38892a9d.js"
   ]
 }
