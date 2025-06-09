@@ -97,9 +97,11 @@ passport.deserializeUser(function (user, cb) {
     });
 });
 
+
 // 7️⃣ Stripe Payment (before /api routes)
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-server.post(`${BASE_URL}/create-checkout-session`, async (req, res) => {
+
+server.post('/create-checkout-session', async (req, res) => {
     try {
         const orderDetails = req.body;
 
@@ -109,14 +111,15 @@ server.post(`${BASE_URL}/create-checkout-session`, async (req, res) => {
                 product_data: {
                     name: item.product.title
                 },
-                unit_amount: Math.round(
+                unit_amount: Math.max(50, Math.round(
                     (item.product.price - (item.product.price * (item.product.discountPercentage / 100))) * 100
-                )
+                ))
             },
             quantity: item.quantity
         }));
 
         const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
             line_items,
             mode: 'payment',
             success_url: `${BASE_URL}/order-success/${orderDetails.id}`,
