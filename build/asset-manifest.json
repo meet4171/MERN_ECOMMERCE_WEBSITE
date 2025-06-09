@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fe96f94a.css",
+    "main.js": "/static/js/main.4738c5f4.js",
+    "static/media/img3.jpg": "/static/media/img3.de034a6d4a2d1898da26.jpg",
+    "static/media/img6.jpg": "/static/media/img6.a31d909709f31d0efac4.jpg",
+    "static/media/img2.jpg": "/static/media/img2.54c64d5e37270e7df5ce.jpg",
+    "static/media/img5.jpg": "/static/media/img5.824987856b1d9abdd943.jpg",
+    "static/media/img4.jpg": "/static/media/img4.300a4b9233b3581c2287.jpg",
+    "static/media/img1.jpg": "/static/media/img1.4af8cc8151b37bfec270.jpg",
+    "static/media/noProduct.jpg": "/static/media/noProduct.eb86101cb96d6b2d05a0.jpg",
+    "static/media/commonwealth.svg": "/static/media/commonwealth.8e2240a8002d592fa5977437ffa1e513.svg",
+    "static/media/backgroundCartIcon.jpg": "/static/media/backgroundCartIcon.2b4d54cb0165a128a0d2.jpg",
+    "static/media/puma.svg": "/static/media/puma.bac76c5f1bf3cee7a08f05657b0d648b.svg",
+    "static/media/isadora.svg": "/static/media/isadora.b35e4d84bb07d5fa12185ff1dc1933de.svg",
+    "static/media/snider-bldg-maintenance.svg": "/static/media/snider-bldg-maintenance.504063ea682622115ce14d5c83330998.svg",
+    "static/media/champion-logo.svg": "/static/media/champion-logo.ddad659139cdfaf08115d949d5646758.svg",
+    "static/media/timberwest.svg": "/static/media/timberwest.924546731254c1cd2c5c30518fa70f22.svg",
+    "static/media/sanofi-logo-2022.svg": "/static/media/sanofi-logo-2022.7a07481fdc1499e9bb16f597419218c7.svg",
+    "static/media/arrow-5.svg": "/static/media/arrow-5.8cce155a4b3e2f4a22549503bb44f170.svg",
+    "static/media/avicenna-755.svg": "/static/media/avicenna-755.bff7738141b6e4af233eb57293a1bc88.svg",
+    "static/media/roscan.svg": "/static/media/roscan.a76f2e3acacc6d13397f022413d869a0.svg",
+    "index.html": "/index.html",
+    "static/media/accel.svg": "/static/media/accel.92f5c8de1e7f1760a46f88c5d1940629.svg",
+    "static/media/diablo.svg": "/static/media/diablo.5bc1db2038d7a848b5362c21f7762dba.svg",
+    "static/media/prada-logo-1.svg": "/static/media/prada-logo-1.f7cb7aade9e7eec36c115c812828ef32.svg",
+    "static/media/zara-logo-1.svg": "/static/media/zara-logo-1.00bc511aa9399ac258f43c0293a26ec4.svg",
+    "static/media/amd-logo-1.svg": "/static/media/amd-logo-1.fbd703721512e58859b4ed3a9deb1c8c.svg",
+    "main.fe96f94a.css.map": "/static/css/main.fe96f94a.css.map",
+    "main.4738c5f4.js.map": "/static/js/main.4738c5f4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fe96f94a.css",
+    "static/js/main.4738c5f4.js"
+  ]
+}
