@@ -99,7 +99,7 @@ passport.deserializeUser(function (user, cb) {
 
 // 7️⃣ Stripe Payment (before /api routes)
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-server.post("/create-checkout-session", async (req, res) => {
+server.post(`${BASE_URL}/create-checkout-session`, async (req, res) => {
     try {
         const orderDetails = req.body;
 
