@@ -47,7 +47,7 @@ server.use(passport.session());
 
 server.use(cors(
     {
-        origin: ['http://localhost:3000', 'https://checkout.stripe.com'],
+        origin: ['http://localhost:3000', 'https://meetjadav.shop', 'https://www.meetjadav.shop', 'https://checkout.stripe.com'],
         exposedHeaders: ['X-Total-Count'],
         credentials: true, // Allow cookies with credentials
     }
