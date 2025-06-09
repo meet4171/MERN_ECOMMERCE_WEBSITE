@@ -137,13 +137,7 @@ server.post("/create-checkout-session", async (req, res) => {
     res.status(200).json({ url: session.url })
 })
 
-// Routes [API EndPoints]
-if (APP_MODE === "production") {
-    server.use(express.static(path.resolve(__dirname, 'build')));
-    server.get('/*', function (req, res) {
-        res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-    });
-}
+
 
 server.use('/api/auth', authRouter);
 server.use('/api/product', isAuth(), productRouter);
@@ -153,6 +147,16 @@ server.use('/api/users', isAuth(), userRouter);
 server.use('/api/cart', isAuth(), cartRouter);
 server.use('/api/orders', isAuth(), orderRouter);
 server.use('/api/admin', isAuth(), adminRouter);
+
+
+// Routes [API EndPoints]
+if (APP_MODE === "production") {
+    server.use(express.static(path.resolve(__dirname, 'build')));
+    server.get(/^\/(?!api).*/, function (req, res) {
+        res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+    });
+}
+
 main()
 server.listen(8080, () => {
     console.log('server started at port http://localhost:8080');
