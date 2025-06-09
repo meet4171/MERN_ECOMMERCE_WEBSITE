@@ -105,13 +105,15 @@ server.post('/create-checkout-session', async (req, res) => {
     try {
         const orderDetails = req.body;
 
+        const MIN_AMOUNT = 5000; // ₹50 minimum, in paisa
+
         const line_items = orderDetails.cartItems.map(item => ({
             price_data: {
                 currency: "inr",
                 product_data: {
                     name: item.product.title
                 },
-                unit_amount: Math.max(50, Math.round(
+                unit_amount: Math.max(MIN_AMOUNT, Math.round(
                     (item.product.price - (item.product.price * (item.product.discountPercentage / 100))) * 100
                 ))
             },
